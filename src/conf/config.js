@@ -1,5 +1,5 @@
 
-const conf = {
+const config = {
     url : String(import.meta.env.VITE_APPWRITE_URL),
     ProjectId : String(import.meta.env.VITE_PROJECT_ID),
     collectionId : String(import.meta.env.VITE_COLLECTION_ID),
@@ -7,4 +7,4 @@ const conf = {
     bucketId : String(import.meta.env.VITE_BUCKET_ID)
 }
 
-export default conf;
+export default config;
