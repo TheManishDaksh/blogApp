@@ -1,5 +1,5 @@
 
-import conf from "../conf/config"
+import config from "../conf/config"
 import { Client, Account, ID} from "appwrite";
 
  export class AuthService{
@@ -9,8 +9,8 @@ import { Client, Account, ID} from "appwrite";
 
     constructor(){
         this.client
-        .setEndpoint(conf.url)
-        .setProjectId(conf.ProjectId);
+        .setEndpoint(config.url)
+        .setProjectId(config.ProjectId);
             this.account = new Account(this.client);
     }
 
@@ -19,6 +19,7 @@ import { Client, Account, ID} from "appwrite";
             const userAccount = await this.account.create(ID.unique(),email,password,name);
             if(userAccount){
                 //login user direct
+                return this.logIn(email,password)
             }else{
                 return userAccount;
             }
