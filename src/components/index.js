@@ -10,5 +10,6 @@ import Login from "./Login";
 import PostCard from "./PostCard"
 import Select from "./Select";
 import Signup from "./Signup"
+import TextEditor from "./TextEditor"
 
-export {Button,Input,Logo,LogoutBtn,header,footer,Container,Login,PostCard,Select,Signup}
+export {Button,Input,Logo,LogoutBtn,header,footer,Container,Login,PostCard,Select,Signup,TextEditor}

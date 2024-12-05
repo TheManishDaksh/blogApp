@@ -2,7 +2,7 @@
 import config from "../conf/config"
 import { Client, Account, ID} from "appwrite";
 
- export class AuthService{
+  export class AuthService{
 
     client = new Client();
     account;
@@ -10,7 +10,7 @@ import { Client, Account, ID} from "appwrite";
     constructor(){
         this.client
         .setEndpoint(config.url)
-        .setProjectId(config.ProjectId);
+        .setProject(config.ProjectId);
             this.account = new Account(this.client);
     }
 
@@ -19,7 +19,7 @@ import { Client, Account, ID} from "appwrite";
             const userAccount = await this.account.create(ID.unique(),email,password,name);
             if(userAccount){
                 //login user direct
-                return this.logIn(email,password)
+                return this.logIn({email,password});
             }else{
                 return userAccount;
             }
@@ -29,10 +29,10 @@ import { Client, Account, ID} from "appwrite";
     }
 
     async logIn ({email,password}){
-        try{
-            return await this.account.createEmailSession(email,password)
-        }catch(err){
-            throw err;
+        try {
+            return await this.account.createEmailSession(email, password);
+        } catch (error) {
+            throw error;
         }
     }
 
@@ -42,11 +42,12 @@ import { Client, Account, ID} from "appwrite";
         }catch(err){
             throw err
         }
+        
     }
 
     async logOut(){
         try{
-            await this.account.deleteSession()
+            await this.account.deleteSessions()
         }catch(err){
             throw err;
         }

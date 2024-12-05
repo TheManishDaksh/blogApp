@@ -29,12 +29,12 @@ export class dbService {
                     status,
                 }
             )
-        }catch(err){
-            throw err;
+        }catch(error){
+            console.log("Appwrite service :: createPost :: error", error);
         }
     }
 
-    async updatePost({title,content,featuredImage,status}){
+    async updatePost(slug,{title,content,featuredImage,status}){
         try{
             return await this.databases.updateDocument(
                 config.dbId,
@@ -44,11 +44,11 @@ export class dbService {
                     title,
                     content,
                     featuredImage,
-                    status
+                    status,
                 }
             )
-        }catch(err){
-            throw err ;
+        }catch(error){
+            console.log("Appwrite service :: updatePost :: error", error);
         }
     }
 
@@ -60,9 +60,8 @@ export class dbService {
                 slug
             )
             return true;
-        }catch(err){
-            console.log("error in deleting post",err);
-            return false
+        }catch(error){
+            console.log("Appwrite service :: deletePost :: error", error);
         }
     }
 
@@ -73,8 +72,9 @@ export class dbService {
                 config.collectionId,
                 slug
             )
-        }catch(err){
-            throw err 
+        }catch(error){
+            console.log("Appwrite service :: getPost :: error", error);
+            return false
         }
     }
 
@@ -85,8 +85,9 @@ export class dbService {
                 config.collectionId,
                 queries
             )
-        }catch(err){
-            throw err
+        }catch(error){
+            console.log("Appwrite service :: getPosts :: error", error);
+            return false
         }
     }
 
@@ -118,7 +119,7 @@ export class dbService {
 
     getFilereview(fileId){
         try{
-            this.bucket.getFilereview(
+            this.bucket.getFilePreview(
                 config.bucketId,
                 fileId
             )

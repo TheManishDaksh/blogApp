@@ -6,8 +6,6 @@ import { useDispatch } from 'react-redux';
 import {useForm} from "react-hook-form"
 import {Button,Input,Logo} from './index'
 
-
-
 function Login() {
     const navigate =useNavigate();
     const dispatch = useDispatch();
@@ -15,12 +13,16 @@ function Login() {
     const {register, handleSubmit} = useForm()
 
     const login = async(data)=>{
-        setError("");
+        setError("")    
         try{
             const session = await authService.logIn(data);
+            console.log(session);
+            
             if(session){
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(storeLogin(userData))
+                console.log(userData);
+                
+                if(userData) dispatch(storeLogin(userData));
                     navigate('/')
             }
         }catch(error){
