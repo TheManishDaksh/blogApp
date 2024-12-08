@@ -2,13 +2,13 @@ import React from "react"
 import {Link} from "react-router-dom"
 import DBservice from "../appwrite/dbConfig"
 
-function Postcard({$id, featuredImage, title}){
+function PostCard({$id, featuredImage, title}){
     
     return (
         <Link to={`/post/${$id}`}>
         <div className='w-full bg-gray-100 rounded-xl p-4'>
             <div className='w-full justify-center mb-4'>
-                <img src={DBservice.getFilereview(featuredImage)} alt={title}
+                <img src={DBservice.getFilePreview(featuredImage)} alt={title}  
                 className='rounded-xl' />
 
             </div>
@@ -21,4 +21,4 @@ function Postcard({$id, featuredImage, title}){
 }
 
     
-export default Postcard;
+export default PostCard;

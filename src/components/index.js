@@ -12,4 +12,4 @@ import Select from "./Select";
 import Signup from "./Signup"
 import TextEditor from "./TextEditor"
 
-export {Button,Input,Logo,LogoutBtn,header,footer,Container,Login,PostCard,Select,Signup,TextEditor}
+export default {Button,Input,Logo,LogoutBtn,header,footer,Container,Login,PostCard,Select,Signup,TextEditor}    

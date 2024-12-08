@@ -12,7 +12,7 @@ function PostForm({post}) {
             title : post?.title || "",
             slug : post?.$id || "",
             content : post?.content || "",
-            status : post?.status || ""
+            status : post?.status || "active"
         }
     })  
 
@@ -50,7 +50,7 @@ function PostForm({post}) {
     const slugTrasnformer = useCallback((value)=>{
         if(value && typeof value === "string"){
             return value
-            .trim(),toLowerCase()
+            .trim().toLowerCase()
             .replace(/[^a-zA-Z\d\s]+/g, "-")
             .replace(/\s/g, "-");
         }
@@ -89,15 +89,15 @@ function PostForm({post}) {
             </div>
             <div className="w-1/3 px-2">
                 <Input
-                label = "image :"
+                label = "featuredImage :"
                 type = "file"
                 className = "mb-4"
                 accept = "image/png, image/jpeg, image/jpg, image/gif"
-                {...register("image",{required : true})}
+                {...register("image",{required : !post})}
                 />
                 {post && (
                     <div>
-                        <img src={DBservice.getFilereview(post.featuredImage)}
+                        <img src={DBservice.getFilePreview(post.featuredImage)}
                          alt={post.title}
                          className="rounded-lg" />
                     </div>

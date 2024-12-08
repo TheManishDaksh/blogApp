@@ -4,7 +4,9 @@ import authService from '../appwrite/auth';
 import { login as storeLogin } from '../store/authSlice';
 import { useDispatch } from 'react-redux';
 import {useForm} from "react-hook-form"
-import {Button,Input,Logo} from './index'
+import Logo from './Logo'
+import Button from './Button';
+import Input from './Input';
 
 function Login() {
     const navigate =useNavigate();
@@ -16,11 +18,9 @@ function Login() {
         setError("")    
         try{
             const session = await authService.logIn(data);
-            console.log(session);
             
             if(session){
                 const userData = await authService.getCurrentUser()
-                console.log(userData);
                 
                 if(userData) dispatch(storeLogin(userData));
                     navigate('/')
@@ -58,10 +58,6 @@ function Login() {
                     type="email"
                     {...register("email", {
                         required: true,
-                        validate: {
-                            matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                            "Email address must be a valid address",
-                        }
                     })}
                     />
                     <Input

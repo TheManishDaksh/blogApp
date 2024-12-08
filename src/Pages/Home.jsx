@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import DBservice from '../appwrite/dbConfig'
-import { Container, PostCard } from '../components'
+import  PostCard  from '../components/PostCard'
+import Container from '../components/container/Container'
 
 function Home() {
     const[posts,setPosts] = useState([])
 
     useEffect(()=>{
         DBservice.getPosts().then((posts)=>{
-            if(posts){
-                setPosts(posts.document)
+            if(posts){  
+                setPosts(posts.documents)
             }
         })
     },[])

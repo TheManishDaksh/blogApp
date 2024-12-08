@@ -117,7 +117,7 @@ export class dbService {
         }
     }
 
-    getFilereview(fileId){
+    getFilePreview(fileId){
         try{
             this.bucket.getFilePreview(
                 config.bucketId,

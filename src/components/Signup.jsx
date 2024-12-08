@@ -1,27 +1,29 @@
-import React, {useState}from 'react'
-import {Link,useNavigate} from "react-router-dom"
+import React, {useState}from 'react';
+import {Link,useNavigate} from "react-router-dom";
 import authService from '../appwrite/auth';
-import { login as storeLogin } from '../store/authSlice';
+import { login } from '../store/authSlice';
 import { useDispatch } from 'react-redux';
-import {useForm} from "react-hook-form"
-import {Button,Input,Logo} from './index'
+import {useForm} from "react-hook-form";
+import Logo from './Logo';
+import Button from './Button';
+import Input from './Input';
 
 function Signup (){
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate(); 
     const [error,setError] = useState("")
     const {register, handleSubmit} = useForm()
 
-    const create = async(data)=>{
-        setError("");
-        try{
-           const session = await authService.createAccount(data)
-           if(session){
-            const userData = await authService.getCurrentUser()
-            if(userData) dispatch(storeLogin(userData))
-                navigate('/')
-           }
-        }catch(error){
+    const create = async(data) => {
+        setError("")
+        try {
+            const userData = await authService.createAccount(data)
+            if (userData) {
+                const userData = await authService.getCurrentUser()
+                if(userData) dispatch(login(userData));
+                navigate("/")
+            }
+        } catch (error) {
             setError(error.message)
         }
     }
