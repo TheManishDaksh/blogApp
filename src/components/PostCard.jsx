@@ -1,14 +1,14 @@
-import React from "react"
-import {Link} from "react-router-dom"
-import DBservice from "../appwrite/dbConfig"
+import React from 'react'
+import appwriteService from "../appwrite/config"
+import {Link} from 'react-router-dom'
 
-function PostCard({$id, featuredImage, title}){
+function PostCard({$id, title, featuredImage}) {
     
-    return (
-        <Link to={`/post/${$id}`}>
+  return (
+    <Link to={`/post/${$id}`}>
         <div className='w-full bg-gray-100 rounded-xl p-4'>
             <div className='w-full justify-center mb-4'>
-                <img src={DBservice.getFilePreview(featuredImage)} alt={title}  
+                <img src={appwriteService.getFilePreview(featuredImage)} alt={title}
                 className='rounded-xl' />
 
             </div>
@@ -20,5 +20,5 @@ function PostCard({$id, featuredImage, title}){
   )
 }
 
-    
-export default PostCard;
+
+export default PostCard
